@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf48b908b26b473587251365cdbf9007, type: 3}
+  m_Name: SpinPreset_5
+  m_EditorClassIdentifier: 
+  outcomes:
+  - outcome:
+      Icon: {fileID: 21300000, guid: 92dac76c46242d048a0319c3d302d234, type: 3}
+      Amount: 89
+      AllowScaling: 1
+    weight: 1
+  - outcome:
+      Icon: {fileID: 21300000, guid: f0c2f00bedaecc74f8df8ce03bbbd5dd, type: 3}
+      Amount: 55
+      AllowScaling: 1
+    weight: 1
+  - outcome:
+      Icon: {fileID: 21300000, guid: 19e03d52c7509a94095125052249f33e, type: 3}
+      Amount: 33
+      AllowScaling: 1
+    weight: 1
+  - outcome:
+      Icon: {fileID: 21300000, guid: 3bfc1fd4315e1224bb1d7be81e4443a9, type: 3}
+      Amount: 24
+      AllowScaling: 1
+    weight: 1
+  - outcome:
+      Icon: {fileID: 21300000, guid: 60902f866251b744c8a7d165f4bcaabf, type: 3}
+      Amount: 100
+      AllowScaling: 1
+    weight: 1
+  - outcome:
+      Icon: {fileID: 21300000, guid: 2bf2582583c50614aa0b3d841b4b9221, type: 3}
+      Amount: 92
+      AllowScaling: 1
+    weight: 1
+  - outcome:
+      Icon: {fileID: 21300000, guid: e1d712cc06c28e24d851c6321bac96a2, type: 3}
+      Amount: 78
+      AllowScaling: 1
+    weight: 1
+  - outcome:
+      Icon: {fileID: 21300000, guid: a7870e5c629ffae4ab0946dd5c582f29, type: 3}
+      Amount: 28
+      AllowScaling: 1
+    weight: 1

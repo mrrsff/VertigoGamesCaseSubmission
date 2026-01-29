@@ -1,4 +1,5 @@
 ﻿using SpinGameDemo.Context;
+using SpinGameDemo.Rewards;
 using SpinGameDemo.Spin;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ namespace SpinGameDemo.Game
         {
             _instance = this;
             Container.Add(new SpinManager());
+            Container.Add(new RewardsManager());
+            Container.Add(new ZoneManager());
         }
         
         public void Initialize()
