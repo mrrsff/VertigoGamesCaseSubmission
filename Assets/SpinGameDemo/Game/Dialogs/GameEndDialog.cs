@@ -25,6 +25,7 @@ namespace SpinGameDemo.Game.Dialogs
 
         public override void OnOpen(Action callback = null)
         {
+            OnValidate();
             gameStateManager = GameContext.Get<GameStateManager>();
             restartButton.onClick.AddListener(RestartGame);
             base.OnOpen(callback);

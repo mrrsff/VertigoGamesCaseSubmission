@@ -45,6 +45,7 @@ namespace SpinGameDemo.Game.Rewards
 
         private void Start()
         {
+            OnValidate();
             rewardManager = GameContext.Get<RewardManager>();
             rewardManager.SetController(this);
             

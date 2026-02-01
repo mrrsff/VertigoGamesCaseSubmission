@@ -1,4 +1,5 @@
-﻿using SpinGameDemo.Game.Spin;
+﻿using System;
+using SpinGameDemo.Game.Spin;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,11 @@ namespace SpinGameDemo.Game
         {
             if (Icon == null) Icon = GetComponentInChildren<Image>();
             if (AmountText == null) AmountText = GetComponentInChildren<TextMeshProUGUI>();
+        }
+
+        private void Awake()
+        {
+            OnValidate();
         }
 
         public void SetOutcome(SpinOutcome outcome)

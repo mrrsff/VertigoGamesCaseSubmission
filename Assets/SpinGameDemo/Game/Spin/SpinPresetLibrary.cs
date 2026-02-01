@@ -39,7 +39,7 @@ namespace SpinGameDemo.Game
 
         public void Init()
         {
-            
+            OnValidate();
         }
         public int GetZoneCount() => zoneCount;
         public SpinPreset GetPreset(int zone)

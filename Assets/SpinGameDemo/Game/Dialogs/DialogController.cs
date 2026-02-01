@@ -11,11 +11,12 @@ namespace SpinGameDemo.Game.Dialogs
 
         private void OnValidate()
         {
-            dialogPanelTransform = GetComponent<RectTransform>();
+            if (dialogPanelTransform == null) dialogPanelTransform = GetComponent<RectTransform>();
         }
 
         private void Start()
         {
+            OnValidate();
             dialogManager = GameContext.Get<DialogManager>();
             dialogManager.SetController(this);
         }

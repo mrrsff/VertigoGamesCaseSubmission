@@ -21,6 +21,7 @@ namespace SpinGameDemo.Game.Dialogs
 
         private void Awake()
         {
+            OnValidate();
             giveUpButton.onClick.AddListener(OnGiveUpClicked);
         }
 

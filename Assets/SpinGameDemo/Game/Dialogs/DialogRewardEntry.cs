@@ -16,6 +16,11 @@ namespace SpinGameDemo.Game.Dialogs
             if (amountText == null) amountText = GetComponentInChildren<TextMeshProUGUI>();
         }
 
+        private void Awake()
+        {
+            OnValidate();
+        }
+
         public void SetData(Sprite icon, int amount)
         {
             if (iconImage != null)

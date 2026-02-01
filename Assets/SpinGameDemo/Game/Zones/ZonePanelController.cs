@@ -22,6 +22,7 @@ namespace SpinGameDemo.Game.Zones
         private void OnValidate()
         {
             numberRectWidth = numberPrefab.GetComponent<RectTransform>().rect.width;
+            if (zoneNumberColors == null) zoneNumberColors = Resources.Load<ZoneNumberColors>("ZoneNumberColors");
         }
 
         // Grayish color for used zones
@@ -32,7 +33,7 @@ namespace SpinGameDemo.Game.Zones
 
         private void Awake()
         { 
-            zoneNumberColors = Resources.Load<ZoneNumberColors>("ZoneNumberColors");
+            OnValidate();
         }
 
         private void Start()

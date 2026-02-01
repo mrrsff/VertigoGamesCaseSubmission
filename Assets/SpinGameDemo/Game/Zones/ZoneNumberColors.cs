@@ -18,7 +18,12 @@ namespace SpinGameDemo.Game.Zones
                 numberColorsDict[nc.zoneType] = nc;
             }
         }
-        
+
+        private void Awake()
+        {
+            OnValidate();
+        }
+
         public NumberColors GetColorsForZoneType(ZoneType zoneType)
         {
             if (numberColorsDict.TryGetValue(zoneType, out var colors))

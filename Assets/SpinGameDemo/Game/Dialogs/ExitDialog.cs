@@ -33,6 +33,7 @@ namespace SpinGameDemo.Game.Dialogs
 
         private void Awake()
         {
+            OnValidate();
             yesButton.onClick.AddListener(OnYesClicked);
             noButton.onClick.AddListener(OnNoClicked);
         }

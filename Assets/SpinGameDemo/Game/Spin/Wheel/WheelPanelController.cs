@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using SpinGameDemo.Game.Spin;
 using SpinGameDemo.Game.Zones;
 using UnityEngine;
@@ -26,7 +27,12 @@ namespace SpinGameDemo.Game.Wheel
             if (!spinButton) spinButton = GetComponentInChildren<Button>(true);
             if (!wheelTransform) wheelTransform = transform.GetChild(0);
         }
-        
+
+        private void Awake()
+        {
+            OnValidate();
+        }
+
         private void Start()
         {
             spinManager = GameContext.Get<SpinManager>();

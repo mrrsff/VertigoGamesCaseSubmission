@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,11 @@ namespace SpinGameDemo.Game.Zones
                 numberText = GetComponentInChildren<TextMeshProUGUI>();
             if (backgroundImage == null)
                 backgroundImage = GetComponentInChildren<Image>();
+        }
+
+        private void Awake()
+        {
+            OnValidate();
         }
     }
 }
