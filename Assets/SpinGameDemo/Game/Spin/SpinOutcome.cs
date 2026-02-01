@@ -1,19 +1,19 @@
 ﻿using System;
-using SpinGameDemo.Rewards;
+using SpinGameDemo.Game.Rewards;
 using UnityEngine;
 
-namespace SpinGameDemo.Spin
+namespace SpinGameDemo.Game.Spin
 {
     [Serializable]
     public class SpinOutcome
     {
         public Sprite Icon;
         public int Amount = 0;
+        public bool IsBomb;
         public bool AllowScaling = true;
-        public virtual bool Apply(RewardsManager rewardsManager, SpinSlot slot)
+        public void Apply(RewardManager rewardManager, SpinSlot slot)
         {
-            rewardsManager.CollectToPanel(slot, this);
-            return true;
+            rewardManager.CollectToPanel(slot, this);
         }
         public void Scale(float scale)
         {

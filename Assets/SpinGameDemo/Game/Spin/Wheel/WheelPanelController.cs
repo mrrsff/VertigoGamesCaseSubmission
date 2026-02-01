@@ -1,9 +1,10 @@
 ﻿using DG.Tweening;
-using SpinGameDemo.Game;
+using SpinGameDemo.Game.Spin;
+using SpinGameDemo.Game.Zones;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpinGameDemo.Spin
+namespace SpinGameDemo.Game.Wheel
 {
     public partial class WheelPanelController : MonoBehaviour
     {
@@ -14,9 +15,12 @@ namespace SpinGameDemo.Spin
         private Button spinButton;
         private Transform wheelTransform;
         private SpinPreset spinPreset;
+        
+        [SerializeField] private Image wheelImage;
+        [SerializeField] private Image pointerImage;
 
         private SpinSlot[] spinSlots = new SpinSlot[8];
-        private bool slotsCreated = false;
+        private bool slotsCreated;
         private void OnValidate() 
         {
             if (!spinButton) spinButton = GetComponentInChildren<Button>(true);
@@ -27,9 +31,9 @@ namespace SpinGameDemo.Spin
         {
             spinManager = GameContext.Get<SpinManager>();
             spinManager.SetController(this);
-            spinButton.onClick.AddListener(SpinWheel); 
+            spinButton.onClick.AddListener(SpinWheel);
         }
-        
+
         public SpinSlot GetSlotAt(int index)
         {
             if (index < 0 || index >= spinSlots.Length)
@@ -43,7 +47,7 @@ namespace SpinGameDemo.Spin
         private void SpinWheel()
         {
             if (!spinManager.CanSpin()) return;
-            spinButton.interactable = false;
+            spinManager.StartSpin();
             int sliceIndex = spinManager.GetSpinResultSliceIndex();
             SpinWheelToSlice(sliceIndex).OnComplete(() => 
             {
@@ -64,17 +68,19 @@ namespace SpinGameDemo.Spin
             }
             slotsCreated = true;
         }
-        public void SetupPreset(SpinPreset preset)
+        public void SetupPreset(SpinPreset preset, Sprite wheelSprite, Sprite pointerSprite)
         {
             spinPreset = preset;
             if (!slotsCreated) CreateSlots();
+            
             for (int i = 0; i < 8; i++)
             {
                 SpinOutcome outcome = spinPreset.GetOutcome(i);
                 spinSlots[i].SetOutcome(outcome);
             }
             
-            spinButton.interactable = true;
+            wheelImage.sprite = wheelSprite;
+            pointerImage.sprite = pointerSprite;
         }
 
         private static (Vector3 position, Vector3 rotation) GetSlotTransform(int index, float radius)

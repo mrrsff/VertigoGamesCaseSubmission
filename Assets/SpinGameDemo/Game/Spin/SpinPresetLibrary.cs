@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpinGameDemo.Spin
+namespace SpinGameDemo.Game
 {
     [CreateAssetMenu(fileName = "SpinOutcomeLibrary", menuName = "Spin/Spin Outcome Library", order = 2)]
     public class SpinPresetLibrary : ScriptableObject
@@ -41,7 +41,7 @@ namespace SpinGameDemo.Spin
         {
             
         }
-
+        public int GetZoneCount() => zoneCount;
         public SpinPreset GetPreset(int zone)
         {
             if (_zonePresets.TryGetValue(zone, out var preset)) // Zone is 1-based

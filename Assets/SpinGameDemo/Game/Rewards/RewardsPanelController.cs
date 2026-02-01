@@ -1,22 +1,64 @@
-﻿using System.Collections.Generic;
-using SpinGameDemo.Game;
-using SpinGameDemo.Spin;
+﻿using System;
+using System.Collections.Generic;
+using SpinGameDemo.Game.Dialogs;
+using SpinGameDemo.Game.Spin;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace SpinGameDemo.Rewards
+namespace SpinGameDemo.Game.Rewards
 {
     public class RewardsPanelController : MonoBehaviour
     {
+        [SerializeField] private Button exitButton;
         [SerializeField] private RewardEntry rewardEntryPrefab;
         [SerializeField] private Transform contentTransform;
 
         private Dictionary<string, RewardEntry> rewardMap = new Dictionary<string, RewardEntry>();
-        private RewardsManager rewardsManager;
+        private RewardManager rewardManager;
+        private DialogManager dialogManager;
+        private GameStateManager gameStateManager;
+        public List<RewardEntry> GetAllRewards() => new List<RewardEntry>(rewardMap.Values);
+
+        private void OnValidate()
+        {
+            if (exitButton == null)
+            {
+                var buttons = GetComponentsInChildren<Button>();
+                if (buttons.Length > 0)
+                {
+                    exitButton = buttons[0];
+                }
+            }
+            if (rewardEntryPrefab == null)
+            {
+                rewardEntryPrefab = GetComponentInChildren<RewardEntry>();
+            }
+            if (contentTransform == null)
+            {
+                var content = GetComponentInChildren<ScrollRect>();
+                if (content != null)
+                {
+                    contentTransform = content.content;
+                }
+            }
+        }
 
         private void Start()
         {
-            rewardsManager = GameContext.Get<RewardsManager>();
-            rewardsManager.SetController(this);
+            rewardManager = GameContext.Get<RewardManager>();
+            rewardManager.SetController(this);
+            
+            dialogManager = GameContext.Get<DialogManager>();
+            exitButton.onClick.AddListener(OnExitClicked);
+            
+            gameStateManager = GameContext.Get<GameStateManager>();
+        }
+
+        private void OnExitClicked()
+        {
+            if (gameStateManager.GetCurrentState() != GameState.Idle)
+                return;
+            gameStateManager.SetState(GameState.Exit);
         }
 
         public void AddReward(SpinOutcome reward)

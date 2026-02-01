@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SpinGameDemo.Game.Spin;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace SpinGameDemo.Spin
+namespace SpinGameDemo.Game
 {
     [CreateAssetMenu(fileName = "SpinPreset", menuName = "Spin/Spin Preset", order = 1)]
     public class SpinPreset : ScriptableObject

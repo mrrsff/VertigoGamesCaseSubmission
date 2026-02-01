@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SpinGameDemo.Game.Spin;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpinGameDemo.Spin
+namespace SpinGameDemo.Game
 {
     public class SpinSlot : MonoBehaviour
     {

@@ -14,42 +14,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outcomes:
   - outcome:
-      Icon: {fileID: 21300000, guid: 4018c632ad676894c96860f2e203d2d0, type: 3}
-      Amount: 13
+      Icon: {fileID: 21300000, guid: 1475fae2d1d8c2f42afe043b681028a1, type: 3}
+      Amount: 5
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
   - outcome:
-      Icon: {fileID: 21300000, guid: d6371de6e693a9440b0a2038e80f2307, type: 3}
-      Amount: 84
+      Icon: {fileID: 21300000, guid: 23c9e6e4c9b06e848b75cca9ced23eaa, type: 3}
+      Amount: 50
+      IsBomb: 0
+      AllowScaling: 1
+    weight: 1
+  - outcome:
+      Icon: {fileID: 21300000, guid: b263f0e07507b1e4c9fb0776163bd6e4, type: 3}
+      Amount: 35
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
   - outcome:
       Icon: {fileID: 21300000, guid: 6e3a710c89d813246948586661bd5982, type: 3}
       Amount: -1
+      IsBomb: 1
       AllowScaling: 1
     weight: 1
   - outcome:
-      Icon: {fileID: 21300000, guid: e09fb98ef5e5ed148ab940a4fdad3149, type: 3}
-      Amount: 99
+      Icon: {fileID: 21300000, guid: 2fed646240009934da3ca5b2599b9cf0, type: 3}
+      Amount: 11
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
   - outcome:
-      Icon: {fileID: 21300000, guid: a9868b272233a0641a084be8565e193f, type: 3}
-      Amount: 98
+      Icon: {fileID: 21300000, guid: 5e163a8c8021174459bc9f22b28991d9, type: 3}
+      Amount: 31
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
   - outcome:
-      Icon: {fileID: 21300000, guid: 67b1a571928ebfe4cac6b48996d059f6, type: 3}
-      Amount: 60
-      AllowScaling: 1
-    weight: 1
-  - outcome:
-      Icon: {fileID: 21300000, guid: 602c9717bf54baf4484cfb23d7677945, type: 3}
-      Amount: 23
+      Icon: {fileID: 21300000, guid: 2a2cc4e8981579f48a1d266cab285196, type: 3}
+      Amount: 29
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
   - outcome:
       Icon: {fileID: 21300000, guid: e1d712cc06c28e24d851c6321bac96a2, type: 3}
-      Amount: 22
+      Amount: 6
+      IsBomb: 0
       AllowScaling: 1
     weight: 1

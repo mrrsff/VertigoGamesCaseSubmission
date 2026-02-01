@@ -14,42 +14,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outcomes:
   - outcome:
-      Icon: {fileID: 21300000, guid: 92dac76c46242d048a0319c3d302d234, type: 3}
-      Amount: 34
+      Icon: {fileID: 21300000, guid: 2a2cc4e8981579f48a1d266cab285196, type: 3}
+      Amount: 10
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
   - outcome:
-      Icon: {fileID: 21300000, guid: 3bfc1fd4315e1224bb1d7be81e4443a9, type: 3}
-      Amount: 50
+      Icon: {fileID: 21300000, guid: b900bff81ca34774a824ec61f70b27d5, type: 3}
+      Amount: 10
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
   - outcome:
-      Icon: {fileID: 21300000, guid: 92dac76c46242d048a0319c3d302d234, type: 3}
-      Amount: 79
+      Icon: {fileID: 21300000, guid: 1252b4a7f698f864e8dc23289ecb2af7, type: 3}
+      Amount: 6
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
   - outcome:
-      Icon: {fileID: 21300000, guid: 4018c632ad676894c96860f2e203d2d0, type: 3}
-      Amount: 64
+      Icon: {fileID: 21300000, guid: 2a2cc4e8981579f48a1d266cab285196, type: 3}
+      Amount: 28
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
   - outcome:
-      Icon: {fileID: 21300000, guid: 92dac76c46242d048a0319c3d302d234, type: 3}
-      Amount: 49
+      Icon: {fileID: 21300000, guid: 1252b4a7f698f864e8dc23289ecb2af7, type: 3}
+      Amount: 3
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
   - outcome:
       Icon: {fileID: 21300000, guid: 6e3a710c89d813246948586661bd5982, type: 3}
       Amount: -1
+      IsBomb: 1
       AllowScaling: 1
     weight: 1
   - outcome:
-      Icon: {fileID: 21300000, guid: 2bf2582583c50614aa0b3d841b4b9221, type: 3}
-      Amount: 92
+      Icon: {fileID: 21300000, guid: 5e163a8c8021174459bc9f22b28991d9, type: 3}
+      Amount: 23
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
   - outcome:
-      Icon: {fileID: 21300000, guid: a3fd48f001fc24d44bae47a12ffd5426, type: 3}
-      Amount: 67
+      Icon: {fileID: 21300000, guid: 602c9717bf54baf4484cfb23d7677945, type: 3}
+      Amount: 40
+      IsBomb: 0
       AllowScaling: 1
     weight: 1

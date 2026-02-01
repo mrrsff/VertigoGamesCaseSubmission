@@ -1,87 +1,117 @@
 ﻿using System;
 using SpinGameDemo.Context;
-using SpinGameDemo.Game;
-using SpinGameDemo.Rewards;
+using SpinGameDemo.Game.Rewards;
+using SpinGameDemo.Game.Spin;
+using SpinGameDemo.Game.Wheel;
+using SpinGameDemo.Game.Zones;
 using UnityEngine;
 
-namespace SpinGameDemo.Spin
+namespace SpinGameDemo.Game
 {
     public class SpinManager : IContextUnit
     {
-        private RewardsManager rewardsManager;
+        private RewardManager rewardManager;
         private ZoneManager zoneManager;
-        
+        private GameStateManager gameStateManager;
+
+        private WheelAssets assets;
         private SpinPresetLibrary _presetLibrary;
         private SpinPreset currentPreset;
         private WheelPanelController _controller;
+        private Action<Action<SpinPreset, Sprite, Sprite>> pendingSetup;
         
-        private int zone;
-        private bool setupOnControllerSet = false;
-        private bool spinned = false;
-        
-        public event Action OnSpinCompleted; 
-        public event Action OnSpinFailed; 
-        
-        public bool CanSpin() => !spinned;
+        private bool skipBomb;
+        private bool readyToSpin;
+        public bool CanSpin() => readyToSpin;
         public void Initialize()
         {
-            rewardsManager = GameContext.Get<RewardsManager>();
+            gameStateManager = GameContext.Get<GameStateManager>();
+            gameStateManager.OnGameStateChanged += HandleRestart;
+            
+            rewardManager = GameContext.Get<RewardManager>();
             zoneManager = GameContext.Get<ZoneManager>();
-            zoneManager.OnZoneChanged += () => SetZone(zone + 1);
+            zoneManager.OnZoneChanged += SetZone;
             
             _presetLibrary = Resources.Load<SpinPresetLibrary>("SpinPresetLibrary");
             _presetLibrary.Init();
+            
+            assets = Resources.Load<WheelAssets>("WheelAssets");
+        }
+        public void Dispose()
+        {
         }
         
         public void SetController(WheelPanelController controller)
         {
             _controller = controller;
-            if (setupOnControllerSet)
-            {
-                SetZone(zone);
-                setupOnControllerSet = false;
-            }
+            pendingSetup?.Invoke(_controller.SetupPreset);
         }
 
-        public void Dispose()
+        private void HandleRestart(GameState state)
         {
+            if (state != GameState.Restart) return;
+            readyToSpin = true;
+            skipBomb = false;
         }
-        
+
+        public void ContinueAfterLose()
+        {
+            readyToSpin = true;
+            skipBomb = true;
+        }
+        public int GetMaxZone() => _presetLibrary.GetZoneCount();
         public int GetSpinResultSliceIndex()
         {
-            if (currentPreset != null) return currentPreset.GetRandomOutcomeIndex();
+            if (!skipBomb) return currentPreset.GetRandomOutcomeIndex();
             
-            Debug.LogError("Current preset is null in SpinManager");
-            return -1;
-        }
-        
-        public void SetZone(int newZone)
-        {
-            zone = newZone;
-            currentPreset = _presetLibrary.GetPreset(zone);
-            if (_controller) _controller.SetupPreset(currentPreset);
-            else setupOnControllerSet = true;
-            spinned = false;
-        }
-        
-        public void ApplySpinResult(int sliceIndex)
-        {
-            if (currentPreset == null)
+            skipBomb = false;
+            do
             {
-                Debug.LogError("SpinPreset is null in SpinManager");
-                return;
-            }
+                int index = currentPreset.GetRandomOutcomeIndex();
+                var outcome = currentPreset.GetOutcome(index);
+                if (!outcome.IsBomb) return index;
+            } while (true);
+        }
 
-            SpinOutcome outcome = currentPreset.GetOutcome(sliceIndex);
-            var slot = _controller.GetSlotAt(sliceIndex);
-            if (outcome.Apply(rewardsManager, slot))
-            {
-                OnSpinCompleted?.Invoke();
-            }
+        public void StartSpin()
+        {
+            gameStateManager.SetState(GameState.Spin);
+            readyToSpin = false;
+        }
+
+        private void SetZone(int newZone)
+        {
+            currentPreset = _presetLibrary.GetPreset(newZone);
+            var wheelSprite = assets.GetWheelSprite(newZone);
+            var pointerSprite = assets.GetPointerSprite(newZone);
+            if (_controller) _controller.SetupPreset(currentPreset, wheelSprite, pointerSprite);
             else
             {
-                OnSpinFailed?.Invoke();
+                pendingSetup = _controllerSetup =>
+                {
+                    _controllerSetup(currentPreset, wheelSprite, pointerSprite);
+                    pendingSetup = null;
+                };
             }
+            readyToSpin = true;
+        }
+        public void ApplySpinResult(int sliceIndex)
+        {
+            gameStateManager.SetState(GameState.Idle);
+            SpinOutcome outcome = currentPreset.GetOutcome(sliceIndex);
+            var slot = _controller.GetSlotAt(sliceIndex);
+            if (outcome.IsBomb)
+            {
+                HandleBomb();
+                return;
+            }
+            
+            outcome.Apply(rewardManager, slot);
+        }
+
+        private void HandleBomb()
+        {
+            gameStateManager.SetState(GameState.BombExplode);
         }
     }
 }

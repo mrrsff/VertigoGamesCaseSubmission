@@ -2,25 +2,38 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using SpinGameDemo.Context;
-using SpinGameDemo.Spin;
+using SpinGameDemo.Game.Spin;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace SpinGameDemo.Rewards
+namespace SpinGameDemo.Game.Rewards
 {
-    public class RewardsManager : IContextUnit
+    public class RewardManager : IContextUnit
     {
         private RewardsPanelController controller;
         private ObjectPool<Image> imagePool;
-
         public event Action OnRewardCollected;
         public void Initialize()
         {
+        }
+
+
+        public void Dispose()
+        {
+        }
+        
+        public void SetController(RewardsPanelController controller)
+        {
+            this.controller = controller;
+            CreatePool();
+        }
+        private void CreatePool()
+        {
             imagePool = new ObjectPool<Image>(() =>
                 {
-                    var go = new GameObject("RewardIcon");
+                    var go = new GameObject("ui_icon_reward");
                     var img = go.AddComponent<Image>();
                     img.raycastTarget = false;
                     img.maskable = false;
@@ -30,15 +43,6 @@ namespace SpinGameDemo.Rewards
                 },
                 img => img.gameObject.SetActive(true),
                 img => img.gameObject.SetActive(false));
-        }
-
-        public void Dispose()
-        {
-        }
-
-        public void SetController(RewardsPanelController controller)
-        {
-            this.controller = controller;
         }
 
         public void CollectToPanel(SpinSlot slot, SpinOutcome outcome)
@@ -51,6 +55,11 @@ namespace SpinGameDemo.Rewards
                     var animation = PlayCollectAnimation(slot.transform, rewardEntry.transform, outcome.Icon);
                     animation.OnComplete(() => OnRewardCollected?.Invoke());
                 });
+        }
+
+        public List<RewardEntry> CollectRewards()
+        {
+            return controller.GetAllRewards();
         }
 
         private Tween PlayCollectAnimation(Transform from, Transform to, Sprite icon)

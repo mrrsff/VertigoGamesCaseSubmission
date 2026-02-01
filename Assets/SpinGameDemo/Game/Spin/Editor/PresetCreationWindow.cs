@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace SpinGameDemo.Spin.Editor
+namespace SpinGameDemo.Game.Spin.Editor
 {
     #if UNITY_EDITOR
     public class PresetCreationWindow : EditorWindow
@@ -355,21 +354,20 @@ namespace SpinGameDemo.Spin.Editor
             
             for (int i = 0; i < outcomeCount; i++)
             {
-                SpinOutcome outcome;
+                SpinOutcome outcome = new SpinOutcome();
                 if (i == bombIndex)
                 {
-                    outcome = new BombOutcome(); 
                     outcome.Icon = bombIcon;
                     outcome.Amount = -1;
+                    outcome.IsBomb = true;
                 }
                 else
                 {
-                    outcome = new SpinOutcome();
                     if (validIcons.Count > 0)
                     {
                         outcome.Icon = validIcons[Random.Range(0, validIcons.Count)];
                     }
-                    outcome.Amount = Random.Range(10, 101);
+                    outcome.Amount = Random.Range(1, 51);
                 }
                 
                 preset.outcomes[i].outcome = outcome;

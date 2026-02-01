@@ -29,7 +29,7 @@ namespace SpinGameDemo.Context
             Application.targetFrameRate = 144;
 
             DOTween.defaultEaseType = Ease.OutQuad;
-            DOTween.Init(useSafeMode: false);
+            DOTween.Init(useSafeMode: true);
         }
 
         private void Update()

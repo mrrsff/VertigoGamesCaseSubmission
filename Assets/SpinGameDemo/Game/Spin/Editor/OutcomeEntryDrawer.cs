@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace SpinGameDemo.Spin.Editor
+namespace SpinGameDemo.Game.Spin.Editor
 {
     #if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(OutcomeEntry))]
@@ -11,18 +11,30 @@ namespace SpinGameDemo.Spin.Editor
         {
             EditorGUI.BeginProperty(position, label, property);
 
-            // [Outcome] Weight:[weight]
-            Rect outcomeRect = new Rect(position.x, position.y, position.width * 0.7f, position.height);
-            Rect weightRect = new Rect(position.x + position.width * 0.7f + 5, position.y, position.width * 0.3f - 5, position.height);
-            Rect weightLabelRect = new Rect(weightRect.x, weightRect.y, 50, weightRect.height);
-            Rect weightFieldRect = new Rect(weightRect.x + 50, weightRect.y, weightRect.width - 50, weightRect.height);
+            SerializedProperty outcomeProp = property.FindPropertyRelative("outcome");
+            SerializedProperty weightProp = property.FindPropertyRelative("weight");
+
+            float outcomeHeight = EditorGUI.GetPropertyHeight(outcomeProp);
+            float weightWidth = 80f;
+            Rect outcomeRect = new Rect(position.x, position.y, position.width - weightWidth - 5, outcomeHeight);
+            
+            // Row 1, Right side: The Weight
+            Rect weightRect = new Rect(position.xMax - weightWidth, position.y, weightWidth, EditorGUIUtility.singleLineHeight);
 
             // Draw fields
-            EditorGUI.PropertyField(outcomeRect, property.FindPropertyRelative("outcome"), GUIContent.none);
-            EditorGUI.LabelField(weightLabelRect, "Weight:");
-            EditorGUI.PropertyField(weightFieldRect, property.FindPropertyRelative("weight"), GUIContent.none);
+            EditorGUI.PropertyField(outcomeRect, outcomeProp, GUIContent.none, true);
+            
+            float prevLabelWidth = EditorGUIUtility.labelWidth;
+            EditorGUIUtility.labelWidth = 50f;
+            EditorGUI.PropertyField(weightRect, weightProp, new GUIContent("W:"));
+            EditorGUIUtility.labelWidth = prevLabelWidth;
 
             EditorGUI.EndProperty();
+        }
+
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("outcome"));
         }
     }
     #endif

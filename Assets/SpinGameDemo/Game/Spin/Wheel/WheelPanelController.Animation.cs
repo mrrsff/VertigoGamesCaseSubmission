@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-namespace SpinGameDemo.Spin
+namespace SpinGameDemo.Game.Wheel
 {
     public partial class WheelPanelController
     {

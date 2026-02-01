@@ -1,6 +1,9 @@
-﻿using SpinGameDemo.Context;
-using SpinGameDemo.Rewards;
-using SpinGameDemo.Spin;
+﻿using DG.Tweening;
+using SpinGameDemo.Context;
+using SpinGameDemo.Game.Dialogs;
+using SpinGameDemo.Game.Rewards;
+using SpinGameDemo.Game.Zones;
+using SpinGameDemo.User;
 using UnityEngine;
 
 namespace SpinGameDemo.Game
@@ -19,8 +22,10 @@ namespace SpinGameDemo.Game
         {
             _instance = this;
             Container.Add(new SpinManager());
-            Container.Add(new RewardsManager());
+            Container.Add(new RewardManager());
             Container.Add(new ZoneManager());
+            Container.Add(new DialogManager());
+            Container.Add(new GameStateManager());
         }
         
         public void Initialize()

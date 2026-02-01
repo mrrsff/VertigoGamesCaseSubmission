@@ -14,42 +14,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outcomes:
   - outcome:
-      Icon: {fileID: 21300000, guid: 60902f866251b744c8a7d165f4bcaabf, type: 3}
-      Amount: 27
-      AllowScaling: 1
-    weight: 1
-  - outcome:
-      Icon: {fileID: 21300000, guid: a3fd48f001fc24d44bae47a12ffd5426, type: 3}
-      Amount: 46
+      Icon: {fileID: 21300000, guid: f0c2f00bedaecc74f8df8ce03bbbd5dd, type: 3}
+      Amount: 31
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
   - outcome:
       Icon: {fileID: 21300000, guid: fb67fea1aca0d784f9a3309f2503a8f7, type: 3}
-      Amount: 16
+      Amount: 21
+      IsBomb: 0
+      AllowScaling: 1
+    weight: 1
+  - outcome:
+      Icon: {fileID: 21300000, guid: 2a2cc4e8981579f48a1d266cab285196, type: 3}
+      Amount: 1
+      IsBomb: 0
+      AllowScaling: 1
+    weight: 1
+  - outcome:
+      Icon: {fileID: 21300000, guid: 4031acddb5d76344a9342fb535734d3c, type: 3}
+      Amount: 1
+      IsBomb: 0
+      AllowScaling: 1
+    weight: 1
+  - outcome:
+      Icon: {fileID: 21300000, guid: 7aef57ab74f9a244391235b2c620843d, type: 3}
+      Amount: 17
+      IsBomb: 0
+      AllowScaling: 1
+    weight: 1
+  - outcome:
+      Icon: {fileID: 21300000, guid: e1d712cc06c28e24d851c6321bac96a2, type: 3}
+      Amount: 41
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
   - outcome:
       Icon: {fileID: 21300000, guid: 6e3a710c89d813246948586661bd5982, type: 3}
       Amount: -1
+      IsBomb: 1
       AllowScaling: 1
     weight: 1
   - outcome:
-      Icon: {fileID: 21300000, guid: a97f119b2e64de9409eda1646759e9de, type: 3}
-      Amount: 14
-      AllowScaling: 1
-    weight: 1
-  - outcome:
-      Icon: {fileID: 21300000, guid: 67b1a571928ebfe4cac6b48996d059f6, type: 3}
-      Amount: 99
-      AllowScaling: 1
-    weight: 1
-  - outcome:
-      Icon: {fileID: 21300000, guid: 3bfc1fd4315e1224bb1d7be81e4443a9, type: 3}
-      Amount: 80
-      AllowScaling: 1
-    weight: 1
-  - outcome:
-      Icon: {fileID: 21300000, guid: 602c9717bf54baf4484cfb23d7677945, type: 3}
-      Amount: 17
+      Icon: {fileID: 21300000, guid: a9868b272233a0641a084be8565e193f, type: 3}
+      Amount: 7
+      IsBomb: 0
       AllowScaling: 1
     weight: 1
